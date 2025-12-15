@@ -271,10 +271,10 @@ public class ChessPanel extends JPanel {
                                 promotionGrid[i] = new JButton();
                                 promotionGrid[i].setBackground(Color.WHITE);
                             }
-                            promotionGrid[0].setIcon(new ImageIcon("BlackQueen.png"));
-                            promotionGrid[1].setIcon(new ImageIcon("BlackRook.png"));
-                            promotionGrid[2].setIcon(new ImageIcon("BlackBishop.png"));
-                            promotionGrid[3].setIcon(new ImageIcon("BlackKnight.png"));
+                            promotionGrid[0].setIcon(new ImageIcon(getClass().getResource("/resources/BlackQueen.png")));
+                            promotionGrid[1].setIcon(new ImageIcon(getClass().getResource("/resources/BlackRook.png")));
+                            promotionGrid[2].setIcon(new ImageIcon(getClass().getResource("/resources/BlackBishop.png")));
+                            promotionGrid[3].setIcon(new ImageIcon(getClass().getResource("/resources/BlackKnight.png")));
 
                             pickingPromotion = true;
 
@@ -285,10 +285,10 @@ public class ChessPanel extends JPanel {
                                 promotionGrid[i] = new JButton();
                                 promotionGrid[i].setBackground(Color.BLACK);
                             }
-                            promotionGrid[0].setIcon(new ImageIcon("WhiteQueen.png"));
-                            promotionGrid[1].setIcon(new ImageIcon("WhiteRook.png"));
-                            promotionGrid[2].setIcon(new ImageIcon("WhiteBishop.png"));
-                            promotionGrid[3].setIcon(new ImageIcon("WhiteKnight.png"));
+                            promotionGrid[0].setIcon(new ImageIcon(getClass().getResource("/resources/WhiteQueen.png")));
+                            promotionGrid[1].setIcon(new ImageIcon(getClass().getResource("/resources/WhiteRook.png")));
+                            promotionGrid[2].setIcon(new ImageIcon(getClass().getResource("/resources/WhiteBishop.png")));
+                            promotionGrid[3].setIcon(new ImageIcon(getClass().getResource("/resources/WhiteKnight.png")));
                             pickingPromotion = true;
                         }
 
