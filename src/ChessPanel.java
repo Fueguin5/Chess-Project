@@ -44,25 +44,27 @@ public class ChessPanel extends JPanel {
         }
 
         // sets the icons of all the buttons to the appropriate starting chess pieces
-        jb[0][0].setIcon(new ImageIcon("BlackRook.png"));
-        jb[0][1].setIcon(new ImageIcon("BlackKnight.png"));
-        jb[0][2].setIcon(new ImageIcon("BlackBishop.png"));
-        jb[0][3].setIcon(new ImageIcon("BlackQueen.png"));
-        jb[0][4].setIcon(new ImageIcon("BlackKing.png"));
-        jb[0][5].setIcon(new ImageIcon("BlackBishop.png"));
-        jb[0][6].setIcon(new ImageIcon("BlackKnight.png"));
-        jb[0][7].setIcon(new ImageIcon("BlackRook.png"));
-        jb[7][0].setIcon(new ImageIcon("WhiteRook.png"));
-        jb[7][1].setIcon(new ImageIcon("WhiteKnight.png"));
-        jb[7][2].setIcon(new ImageIcon("WhiteBishop.png"));
-        jb[7][3].setIcon(new ImageIcon("WhiteQueen.png"));
-        jb[7][4].setIcon(new ImageIcon("WhiteKing.png"));
-        jb[7][5].setIcon(new ImageIcon("WhiteBishop.png"));
-        jb[7][6].setIcon(new ImageIcon("WhiteKnight.png"));
-        jb[7][7].setIcon(new ImageIcon("WhiteRook.png"));
+        jb[0][0].setIcon(new ImageIcon(getClass().getResource("/resources/BlackRook.png")));
+        jb[0][1].setIcon(new ImageIcon(getClass().getResource("/resources/BlackKnight.png")));
+        jb[0][2].setIcon(new ImageIcon(getClass().getResource("/resources/BlackBishop.png")));
+        jb[0][3].setIcon(new ImageIcon(getClass().getResource("/resources/BlackQueen.png")));
+        jb[0][4].setIcon(new ImageIcon(getClass().getResource("/resources/BlackKing.png")));
+        jb[0][5].setIcon(new ImageIcon(getClass().getResource("/resources/BlackBishop.png")));
+        jb[0][6].setIcon(new ImageIcon(getClass().getResource("/resources/BlackKnight.png")));
+        jb[0][7].setIcon(new ImageIcon(getClass().getResource("/resources/BlackRook.png")));
+
+        jb[7][0].setIcon(new ImageIcon(getClass().getResource("/resources/WhiteRook.png")));
+        jb[7][1].setIcon(new ImageIcon(getClass().getResource("/resources/WhiteKnight.png")));
+        jb[7][2].setIcon(new ImageIcon(getClass().getResource("/resources/WhiteBishop.png")));
+        jb[7][3].setIcon(new ImageIcon(getClass().getResource("/resources/WhiteQueen.png")));
+        jb[7][4].setIcon(new ImageIcon(getClass().getResource("/resources/WhiteKing.png")));
+        jb[7][5].setIcon(new ImageIcon(getClass().getResource("/resources/WhiteBishop.png")));
+        jb[7][6].setIcon(new ImageIcon(getClass().getResource("/resources/WhiteKnight.png")));
+        jb[7][7].setIcon(new ImageIcon(getClass().getResource("/resources/WhiteRook.png")));
+
         for (int i = 0; i < 8; i++) {
-            jb[1][i].setIcon(new ImageIcon("BlackPawn.png"));
-            jb[6][i].setIcon(new ImageIcon("WhitePawn.png"));
+            jb[1][i].setIcon(new ImageIcon(getClass().getResource("/resources/BlackPawn.png")));
+            jb[6][i].setIcon(new ImageIcon(getClass().getResource("/resources/WhitePawn.png")));
         }
 
         // adds a PieceHandler to all the buttons
@@ -431,46 +433,29 @@ public class ChessPanel extends JPanel {
             int toCol = getCol(destinationButton);
             int toRow = getRow(destinationButton);
 
-            if (isValidKingSideCastling()) {
-                // highlight squares for king-side castling
-                jb[getRow(pieceSelected)][5].setBackground(color3);
-                jb[getRow(pieceSelected)][6].setBackground(color3);
-                return true;
-            } else if (isValidQueenSideCastling()) {
-                // highlight squares for queen-side castling
-                jb[getRow(pieceSelected)][3].setBackground(color3);
-                jb[getRow(pieceSelected)][2].setBackground(color3);
-                jb[getRow(pieceSelected)][1].setBackground(color3);
-                return true;
-            }
-
+            // must move exactly two squares horizontally
             if (fromRow != toRow || Math.abs(fromCol - toCol) != 2) {
-                return false; // not a valid castling move
+                return false;
             }
 
-            // check if the king and the rook have not moved
-            if (isBlackMove) {
-                // black king-side castling
-                if (fromCol == 4 && fromRow == 0 && toCol == 6 && toRow == 0) {
-                    return isValidKingSideCastling();
-                }
-                // black queen-side castling
-                else if (fromCol == 4 && fromRow == 0 && toCol == 2 && toRow == 0) {
-                    return isValidQueenSideCastling();
-                }
-            } else {
-                // white king-side castling
-                if (fromCol == 4 && fromRow == 7 && toCol == 6 && toRow == 7) {
-                    return isValidKingSideCastling();
-                }
-                // white queen-side castling
-                else if (fromCol == 4 && fromRow == 7 && toCol == 2 && toRow == 7) {
-                    return isValidQueenSideCastling();
-                }
+            // destination must be empty
+            if (jb[toRow][toCol].getIcon() != null) {
+                return false;
+            }
+
+            // king-side castling
+            if (toCol == 6) {
+                return isValidKingSideCastling();
+            }
+
+            // queen-side castling
+            if (toCol == 2) {
+                return isValidQueenSideCastling();
             }
 
             return false;
         }
+
 
         // check if squares between the king and rook are empty
         private boolean isValidKingSideCastling() {
