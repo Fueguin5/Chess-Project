@@ -8,7 +8,7 @@
 
 This project is a fully playable two-player chess game implemented in Java with a graphical user interface built using Swing. The application enforces standard chess rules, including legal move validation, check detection, checkmate detection, castling, and pawn promotion.
 
-The project was originally developed as a collaborative assignment for a Java programming course. There was a bug in the castling function that was left for years after the course concluded, but has now been fixed to make this project suitable as a **portfolio project**.
+The project was originally developed as a collaborative assignment for a Java programming course. A known bug in the castling logic was later corrected after the course concluded, making the project suitable for inclusion as a **portfolio project**.
 
 ---
 
@@ -83,10 +83,3 @@ The project was originally developed as a collaborative assignment for a Java pr
 ## Demo
 
 - to be added
-
----
-
-## Running the Game
-
-```bash
-java -jar ChessGame.jar
